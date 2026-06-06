@@ -1,0 +1,87 @@
+/* Reset */
+.card img {
+    border: 3px solid #2563eb;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Container */
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Heading */
+.container h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Input */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #000;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffd700;
+    color: black;
+}
+
+/* Result */
+#result {
+    .result-box {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+                .result-box {
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 10px;
+                    border-radius: 10px;
+                }
+}
+
+/* Small animation */
+.container:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
