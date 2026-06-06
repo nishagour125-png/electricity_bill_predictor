@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Electricity Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background: #f3f4f6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Container */
+        .container {
+            padding: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Buttons */
+        button {
+            padding: 10px;
+            margin: 5px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Inputs */
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 🔐 LOGIN -->
+    <div id="loginPage" style="text-align:center; margin-top:100px;">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- ⚡ DASHBOARD -->
+    <div id="dashboard" style="display:none;">
+
+        <div class="navbar">
+            <h2 id="welcomeText">Welcome</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <div class="container">
+
+            <!-- Profile -->
+            <div class="card">
+                <h3>Profile</h3>
+                <p>Name: <span id="profileName"></span></p>
+                <p>Consumer ID: 123456</p>
+                <p>Address: Bhopal</p>
+            </div>
+
+            <!-- Bill -->
+            <div class="card">
+                <h3>Bill Calculator</h3>
+                <input type="number" id="units" placeholder="Enter Units">
+                <button onclick="calculateBill()">Calculate</button>
+                <p id="billAmount">₹0</p>
+            </div>
+
+            <!-- Payment -->
+            <div class="card">
+                <h3>Payment</h3>
+                <select>
+                    <option>UPI</option>
+                    <option>Card</option>
+                    <option>Net Banking</option>
+                </select>
+                <button onclick="payNow()">Pay Now</button>
+                <p id="paymentStatus"></p>
+            </div>
+
+            <!-- Complaint -->
+            <div class="card">
+                <h3>Complaint</h3>
+                <select>
+                    <option>Billing Issue</option>
+                    <option>Power Cut</option>
+                </select>
+                <textarea placeholder="Write your complaint"></textarea>
+                <button onclick="submitComplaint()">Submit</button>
+                <p id="complaintMsg"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // LOGIN
+        function login() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+
+            if (user === "admin" && pass === "1234") {
+                localStorage.setItem("username", user);
+
+                document.getElementById("loginPage").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+
+                loadUser();
+            } else {
+                alert("Wrong login ❌");
+            }
+        }
+
+        // LOAD USER
+        function loadUser() {
+            let name = localStorage.getItem("username");
+            document.getElementById("welcomeText").innerText = "Welcome, " + name + " 👋";
+            document.getElementById("profileName").innerText = name;
+        }
+
+        // LOGOUT
+        function logout() {
+            localStorage.removeItem("username");
+            location.reload();
+        }
+
+        // BILL
+        function calculateBill() {
+            let units = document.getElementById("units").value;
+
+            if (units <= 0) {
+                alert("Enter valid units");
+                return;
+            }
+
+            let total = units * 7;
+            document.getElementById("billAmount").innerText = "₹" + total;
+        }
+
+        // PAYMENT
+        function payNow() {
+            document.getElementById("paymentStatus").innerText = "Payment Successful ✅";
+        }
+
+        // COMPLAINT
+        function submitComplaint() {
+            document.getElementById("complaintMsg").innerText = "Complaint Submitted ✅";
+        }
+
+        // AUTO LOGIN
+        window.onload = function () {
+            if (localStorage.getItem("username")) {
+                document.getElementById("loginPage").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+                loadUser();
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
